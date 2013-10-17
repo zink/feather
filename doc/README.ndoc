@@ -1,0 +1,55 @@
+= 目录说明 =
+/
+feather拥有默认的目录结构，除了动态的目录（asset,data,upload）外，其余目录均不可改名或者自定义层级。
+/
+
+=== 概览 ===
+'''
+root
+  |-app //应用目录
+  |  |-views           //视图文件
+  |  |  |
+  |  |  |-layouts      //layout文件
+  |  | 
+  |  |-models          //模型层
+  |  |
+  |  |-controllers     //控制器层
+  |  |
+  |  |-asset           //静态资源
+  |      |
+  |      |-stylesheets //样式表
+  |      |
+  |      |-javascripts //脚本文件
+  |      |
+  |      |-images      //图片
+  |
+  |-config             //配置文件
+  |
+  |-core               //feather核心文件
+  |
+  |-data               //用来存储编译后文件和缓存文件
+  |  |
+  |  |-cache           //存储缓存文件,如果使用kv机制，该目录下不会产生文件。
+  |  |
+  |  |-compiled        //编译后的视图文件
+  |
+  |-db                 //存储数据库相关数据
+  |  |
+  |  |-database        //存储sql命令
+  |  |
+  |  |-logs            //迁移任务日志
+  |  |
+  |  |-migrations      //存储迁移任务
+  |
+  |-public             //存储公共文件，如404页面
+  |
+  |-upload             //存储客户端上传文件
+'''
+  
+= 系统常量 =
+
+-
+APP_PATH  应用文件根目录
+VIEW_PATH  视图文件目录
+LAYOUT_PATH layout文件目录
+-
