@@ -5,7 +5,7 @@ class Error{
     function handlingExceptions($error){
         switch($error){
         case 404:
-            $page404 = file_get_contents('public/404.html');
+            $page404 = file_get_contents(PUBLIC_PATH.'404.html');
             header('HTTP/1.1 404 Not Found');
             header("status: 404 Not Found");
             echo $page404;
