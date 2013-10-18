@@ -9,13 +9,18 @@ class Base extends \RainTPL{
     var $assetPath;
     function __construct(){
         if(CDN){
-            $GLOBALS['env']['assetsPath'] = $this -> assetPath = CDN.DIRECTORY_SEPARATOR.'asset';
+            $assetsRoot = CDN.DIRECTORY_SEPARATOR;
         }else{
-            $GLOBALS['env']['assetPath'] = $this -> assetPath = $GLOBALS['env']['appRoot'].DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'asset';
+            $assetsRoot = $GLOBALS['env']['appRoot'].DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR;
         }
+        $GLOBALS['env']['assetsPath'] = $assetsRoot.ASSETS_PATH;
+        $GLOBALS['env']['javascriptsPath'] = $assetsRoot.JAVASCRIPTS_PATH;
+        $GLOBALS['env']['imagesPath'] = $assetsRoot.IMAGES_PATH;
+        $GLOBALS['env']['stylesheetsPath'] = $assetsRoot.STYLESEETS_PATH;
+
         \raintpl::configure("base_url", $GLOBALS['env']['baseURL'] );
-        \raintpl::configure("asset_path", $GLOBALS['env']['assetPath'] );
-        \raintpl::configure("tpl_dir", VIEW_PATH );
+        \raintpl::configure("assets_path", $GLOBALS['env']['assetsPath'] );
+        \raintpl::configure("tpl_dir", VIEWS_PATH );
         \raintpl::configure("cache_dir", APP_PATH.DIRECTORY_SEPARATOR.CACHE_DIR.DIRECTORY_SEPARATOR."compiled/" );
     }
     function parse($viewData,$layout,$view){

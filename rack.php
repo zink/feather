@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('UTC');
-define('APP_PATH',getcwd());
+require_once(__DIR__.DIRECTORY_SEPARATOR.'feather_config.php');
 require_once(__DIR__.DIRECTORY_SEPARATOR.'encrypt'.DIRECTORY_SEPARATOR.'authcode.php');
 require_once __DIR__.DIRECTORY_SEPARATOR.'generate'.DIRECTORY_SEPARATOR.'generate.php';
 require_once __DIR__.DIRECTORY_SEPARATOR.'generate'.DIRECTORY_SEPARATOR.'colors.php';

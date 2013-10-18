@@ -1,4 +1,4 @@
 <?php
-class <%name%> extends ActiveRecord\Model{
+class <{name}> extends ActiveRecord\Model{
 }
 ?>

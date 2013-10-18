@@ -44,7 +44,7 @@ class RainTPL{
 		 *
 		 * @var string
 		 */
-		static $asset_path = null;
+		static $assets_path = null;
 
         static $left_delimiter = '<{';
         static $right_delimiter = '}>';
@@ -655,23 +655,23 @@ class RainTPL{
 		if( self::$path_replace ){
 
 			// reduce the path
-			$path = $this->reduce_path(self::$asset_path);
+			$path = $this->reduce_path(self::$assets_path);
 
 			$exp = $sub = array();
 
 			if( in_array( "img", self::$path_replace_list ) ){
 				$exp = array( '/<img(.*?)src=(?:")(http|https)\:\/\/([^"]+?)(?:")/i', '/<img(.*?)src=(?:")([^"]+?)#(?:")/i', '/<img(.*?)src="[^'.self::$left_delimiter.'](.*?)[^'.self::$right_delimiter.']"/', '/<img(.*?)src=(?:\@)([^"]+?)(?:\@)/i' );
-				$sub = array( '<img$1src=@$2://$3@', '<img$1src=@$2@', '<img$1src="' . $path . '/images/$2"', '<img$1src="$2"' );
+				$sub = array( '<img$1src=@$2://$3@', '<img$1src=@$2@', '<img$1src="' . IMAGES_PATH . '$2"', '<img$1src="$2"' );
 			}
 
 			if( in_array( "script", self::$path_replace_list ) ){
 				$exp = array_merge( $exp , array( '/<script(.*?)src=(?:")(http|https)\:\/\/([^"]+?)(?:")/i', '/<script(.*?)src=(?:")([^"]+?)#(?:")/i', '/<script(.*?)src="(.*?)"/', '/<script(.*?)src=(?:\@)([^"]+?)(?:\@)/i' ) );
-				$sub = array_merge( $sub , array( '<script$1src=@$2://$3@', '<script$1src=@$2@', '<script$1src="' . $path . '/javascripts/$2"', '<script$1src="$2"' ) );
+				$sub = array_merge( $sub , array( '<script$1src=@$2://$3@', '<script$1src=@$2@', '<script$1src="' . JAVASCRIPTS_PATH . '$2"', '<script$1src="$2"' ) );
 			}
 
 			if( in_array( "link", self::$path_replace_list ) ){
 				$exp = array_merge( $exp , array( '/<link(.*?)href=(?:")(http|https)\:\/\/([^"]+?)(?:")/i', '/<link(.*?)href=(?:")([^"]+?)#(?:")/i', '/<link(.*?)href="(.*?)"/', '/<link(.*?)href=(?:\@)([^"]+?)(?:\@)/i' ) );
-				$sub = array_merge( $sub , array( '<link$1href=@$2://$3@', '<link$1href=@$2@' , '<link$1href="' . $path . '/stylesheets/$2"', '<link$1href="$2"' ) );
+				$sub = array_merge( $sub , array( '<link$1href=@$2://$3@', '<link$1href=@$2@' , '<link$1href="' . STYLESEETS_PATH . '$2"', '<link$1href="$2"' ) );
 			}
 
 			if( in_array( "a", self::$path_replace_list ) ){

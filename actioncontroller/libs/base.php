@@ -21,7 +21,7 @@ abstract class Base{
               )
      */
     public function render($args=array()){
-        if(file_exists(LAYOUT_PATH.$GLOBALS['control'].'.html')){
+        if(file_exists(LAYOUTS_PATH.$GLOBALS['control'].'.html')){
             $layout = $GLOBALS['control'];
         }else{
             $layout = 'application';

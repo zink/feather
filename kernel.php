@@ -6,7 +6,7 @@ class Kernel{
            $_SERVER['PATH_INFO'] = '/home/index';
         }
         //加载用户配置文件
-        require_once(CONFIG_PATH);
+        require_once(CONFIG_PATH.'config.php');
         //加载字符串加密模块
         require_once(__DIR__.DIRECTORY_SEPARATOR.'encrypt'.DIRECTORY_SEPARATOR.'authcode.php');
         //加载ActionController

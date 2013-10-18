@@ -1,1 +1,1 @@
-this is <%controller%>/<%name%>
+this is <{controller}>/<{name}>

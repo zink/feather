@@ -86,12 +86,22 @@ class Generate{
                 }else{
                     $this -> throwMsg('error','miss name!','no_scaffold_name');
                 }
+            case 'init':
+                $this -> initApp();
             break;
         }
     }
+    function initApp(){
+        /*
+        mkdir(APP_PATH);
+        mkdir(VIEWS_PATH);
+        mkdir(LAYOUTS_PATH);
+        mkdir(ASSETS_PATH);
+        */
+    }
     function createController($name){
         $tpl = $this -> get_tpl('controller');
-        $tpl = str_replace('<%name%>',ucfirst($name),$tpl);
+        $tpl = str_replace('<{name}>',ucfirst($name),$tpl);
         $cltName = $name.'_controller.php';
         $cltFile = APP_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'controllers'.DIRECTORY_SEPARATOR.$cltName;
         if(file_exists($cltFile)){
@@ -108,7 +118,7 @@ class Generate{
     }
     function createModel($name){
         $tpl = $this -> get_tpl('model');
-        $tpl = str_replace('<%name%>',ucfirst($name),$tpl);
+        $tpl = str_replace('<{name}>',ucfirst($name),$tpl);
         $mdName = $name.'.php';
         $mdFile = APP_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'models'.DIRECTORY_SEPARATOR.$mdName;
         if(file_exists($mdFile)){
@@ -124,8 +134,8 @@ class Generate{
     }
     function createView($controller,$name = 'index'){
         $tpl = $this -> get_tpl('view');
-        $tpl = str_replace('<%name%>',$name,$tpl);
-        $tpl = str_replace('<%controller%>',$controller,$tpl);
+        $tpl = str_replace('<{name}>',$name,$tpl);
+        $tpl = str_replace('<{controller}>',$controller,$tpl);
         $viName = $controller.DIRECTORY_SEPARATOR.$name.'.html';
         $viFile = APP_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.$viName;
         $viDir = APP_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.$controller;

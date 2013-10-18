@@ -9,7 +9,7 @@ class Routes{
     static function __load_class($class){
         $class = explode('Controller',$class);
         $class = strtolower($class[0]).'_controller.php';
-        $file = APP_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'controllers'.DIRECTORY_SEPARATOR.$class;
+        $file = CONTROLLERS_PATH.$class;
         require_once $file;
     }
     /*
@@ -48,7 +48,7 @@ class Routes{
             if(isset($databases)){
                 define('DATABASE',$databases['development']['type'].'://'.$databases['development']['user'].':'.$databases['development']['password'].'@'.$databases['development']['host'].'/'.$databases['development']['database'].'?charset='.$databases['development']['charset']);
                 \ActiveRecord\Config::initialize(function($cfg){
-                        $cfg->set_model_directory('app/models');
+                        $cfg->set_model_directory(MODELS_PATH);
                         $cfg->set_connections(array(
                         'development' =>DATABASE));
                 });
