@@ -19,7 +19,7 @@ class Base extends \RainTPL{
         $GLOBALS['env']['stylesheetsPath'] = $assetsRoot.STYLESEETS_PATH;
 
         \raintpl::configure("base_url", $GLOBALS['env']['baseURL'] );
-        \raintpl::configure("assets_path", $GLOBALS['env']['assetsPath'] );
+        //\raintpl::configure("assets_path", $GLOBALS['env']['assetsPath'] );
         \raintpl::configure("tpl_dir", VIEWS_PATH );
         \raintpl::configure("cache_dir", APP_PATH.DIRECTORY_SEPARATOR.CACHE_DIR.DIRECTORY_SEPARATOR."compiled/" );
     }
