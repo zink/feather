@@ -151,6 +151,14 @@ class Generate{
         mkdir($appDir.STYLESEETS_PATH);
 
         /*
+           make cache dir
+         */
+
+        mkdir(DEFAULT_CACHE_PATH);
+        mkdir(DEFAULT_CACHE_PATH.'cache');
+        mkdir(DEFAULT_CACHE_PATH.'compiled');
+
+        /*
            make config dir and config files
          */
 

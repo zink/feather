@@ -1,7 +1,7 @@
 <?php
 namespace ActionController;
 
-class Error{
+class Error extends \exception{
     function handlingExceptions($error){
         switch($error){
         case 404:
