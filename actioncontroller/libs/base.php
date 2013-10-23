@@ -2,8 +2,8 @@
 namespace ActionController;
 abstract class Base{
     function __construct(){
+        //spl_autoload_register(__NAMESPACE__.'\Base::__load_plugins');
         $webUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'];
-        $this -> http = new Httpclient();
         if(REWRITE){
             $GLOBALS['env']['baseURL'] = $this -> baseURL = str_replace('/index.php','',$webUrl);
         }else{
@@ -20,7 +20,7 @@ abstract class Base{
                   format=>[js,html]
               )
      */
-    public function render($args=array()){
+     function render($args=array()){
         if(file_exists(LAYOUTS_PATH.$GLOBALS['control'].'.html')){
             $layout = $GLOBALS['control'];
         }else{
@@ -36,24 +36,22 @@ abstract class Base{
             case 'html':
                 $viewFile = $GLOBALS['control'].DIRECTORY_SEPARATOR.$args['view'];
                 $actionView = new \ActionView\Base();
-                if($args['layout']){
-                    $layoutFile = 'layouts/'.$args['layout'];
-                }else{
-                    $layoutFile = false;
-                }
-                $actionView -> parse(get_object_vars($this),$layoutFile,$viewFile);
+                $layoutFile = 'layouts/'.$args['layout'];
+                $actionView -> assign('yield',$viewFile);
+                $actionView->assign(get_object_vars($this));
+                $actionView->draw($layoutFile);
             break;
             case 'js':
-                $viewFile = $GLOBALS['control'].'/'.$args[view].'.ajax';
+                $viewFile = $GLOBALS['control'].DIRECTORY_SEPARATOR.$args[view].'.ajax';
                 $actionView = new \ActionView\Base();
-                $actionView -> output(get_object_vars($this),$viewFile);
+                $actionView->assign(get_object_vars($this));
+                $actionView->draw($viewFile);
             break;
         }
     }
     public function redirect($path){
         $_SERVER['PATH_INFO'] = '/'.$path;
         header('Location: '.$this -> baseURL.'/'.$path);
-        //\Kernel::routes();
     }
     public function modifier_cut($string, $length = 80, $etc = '...', $break_words = false, $middle = false){
         if ($length == 0)

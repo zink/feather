@@ -5,10 +5,9 @@ class Error extends \exception{
     function handlingExceptions($error){
         switch($error){
         case 404:
-            $page404 = file_get_contents(PUBLIC_PATH.'404.html');
             header('HTTP/1.1 404 Not Found');
             header("status: 404 Not Found");
-            echo $page404;
+            include_once(PUBLIC_PATH.'404.html');
             break;
         case 'database':
             header("Content-type: text/html; charset=utf-8"); 

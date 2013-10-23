@@ -23,22 +23,6 @@ class Base extends \RainTPL{
         \raintpl::configure("tpl_dir", VIEWS_PATH );
         \raintpl::configure("cache_dir", APP_PATH.DIRECTORY_SEPARATOR.CACHE_DIR.DIRECTORY_SEPARATOR."compiled/" );
     }
-    function parse($viewData,$layout,$view){
-        if($layout){
-            $this -> output($viewData,$layout,$view);
-        }else{
-            $this -> output($viewData,$view);
-        }
-    }
-    function output($viewData,$layout,$view=false){ 
-        foreach($viewData as $key=>$value){
-            $this->assign($key,$value);
-        }
-        if($view){
-            $this -> assign('yield',$view);
-        }
-        $output = $this->draw($layout);
-    }
 }
 ?>
         

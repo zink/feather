@@ -3,17 +3,6 @@ namespace ActionController;
 class Routes{
     /*
      *
-     * 定义控制器自动加载函数
-     *
-     */
-    static function __load_class($class){
-        $class = explode('Controller',$class);
-        $class = strtolower($class[0]).'_controller.php';
-        $file = CONTROLLERS_PATH.$class;
-        require_once $file;
-    }
-    /*
-     *
      * 路由解析
      *
      */
@@ -43,8 +32,7 @@ class Routes{
                 if(preg_match($pattern, $val)){
                     array_push($GLOBALS['param'],$val);
                 }
-            }
-            spl_autoload_register(__NAMESPACE__.'\Routes::__load_class');
+            };
             if(isset($databases)){
                 define('DATABASE',$databases['development']['type'].'://'.$databases['development']['user'].':'.$databases['development']['password'].'@'.$databases['development']['host'].'/'.$databases['development']['database'].'?charset='.$databases['development']['charset']);
                 \ActiveRecord\Config::initialize(function($cfg){
@@ -54,7 +42,7 @@ class Routes{
                 });
             }else{
                 Error::handlingExceptions('database');
-            }
+            };
             $controlClass = ucfirst($GLOBALS['control']).'Controller';
             $control = new $controlClass;
             $control -> $GLOBALS['action']();
