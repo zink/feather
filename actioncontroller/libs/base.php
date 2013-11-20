@@ -45,7 +45,7 @@ abstract class Base{
                 $viewFile = $GLOBALS['control'].DIRECTORY_SEPARATOR.$args[view].'.ajax';
                 $actionView = new \ActionView\Base();
                 $actionView->assign(get_object_vars($this));
-                $actionView->draw($viewFile);
+                $actionView->draw($viewFile,ture);
             break;
         }
     }

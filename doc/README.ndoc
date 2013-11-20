@@ -25,7 +25,7 @@ root
   |
   |-config             //配置文件
   |
-  |-core               //feather核心文件
+  |-feather               //feather核心文件
   |
   |-data               //用来存储编译后文件和缓存文件
   |  |
