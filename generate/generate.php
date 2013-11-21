@@ -86,6 +86,7 @@ class Generate{
                 }else{
                     $this -> throwMsg('error','miss name!','no_scaffold_name');
                 }
+            break;
             case 'init':
                 $this -> initApp();
             break;
