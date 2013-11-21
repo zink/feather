@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 require_once(__DIR__.DIRECTORY_SEPARATOR.'feather_config.php');
 require_once(__DIR__.DIRECTORY_SEPARATOR.'encrypt'.DIRECTORY_SEPARATOR.'authcode.php');

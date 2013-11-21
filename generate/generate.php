@@ -166,6 +166,12 @@ class Generate{
         $this -> createConfig();
 
         /*
+           make rack files
+         */
+
+        $this -> createRack();
+
+        /*
            make public dir
          */
 
@@ -210,6 +216,16 @@ class Generate{
             $this -> throwMsg('success','404 file created',$_404File);
         }else{
             $this -> throwMsg('error','Error','Can\'t create 404 file');
+        }
+    }
+    function createRack(){
+        $racktpl = $this->getTpl('rack');
+        $rackFile = APP_PATH.DIRECTORY_SEPARATOR.'rack';
+        $return = file_put_content($rackFile,$racktpl);
+        if($return){
+            $this -> throwMsg('success','Rack file created',$rackFile);
+        }else{
+            $this -> throwMsg('error','Error','Can\'t create rack file');
         }
     }
     function createConfig(){

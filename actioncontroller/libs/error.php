@@ -2,7 +2,7 @@
 namespace ActionController;
 
 class Error extends \exception{
-    function handlingExceptions($error){
+    static function handlingExceptions($error){
         switch($error){
         case 404:
             header('HTTP/1.1 404 Not Found');
