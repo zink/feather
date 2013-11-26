@@ -2,7 +2,7 @@
 require_once(__DIR__.DIRECTORY_SEPARATOR.'feather_config.php');
 class Kernel{
     static function routes(){
-        if(!isset($_SERVER['PATH_INFO']) || $_SERVER['PATH_INFO'] == ''){
+        if(!isset($_SERVER['PATH_INFO']) || $_SERVER['PATH_INFO'] == ''|| $_SERVER['PATH_INFO'] == '/'){
            $_SERVER['PATH_INFO'] = '/home/index';
         }
         //加载用户配置文件

@@ -221,7 +221,7 @@ class Generate{
     function createRack(){
         $racktpl = $this->getTpl('rack');
         $rackFile = APP_PATH.DIRECTORY_SEPARATOR.'rack';
-        $return = file_put_content($rackFile,$racktpl);
+        $return = file_put_contents($rackFile,$racktpl);
         if($return){
             $this -> throwMsg('success','Rack file created',$rackFile);
         }else{
