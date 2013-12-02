@@ -661,17 +661,17 @@ class RainTPL{
 
 			if( in_array( "img", self::$path_replace_list ) ){
 				$exp = array( '/<img(.*?)src=(?:")(http|https)\:\/\/([^"]+?)(?:")/i', '/<img(.*?)src=(?:")([^"]+?)#(?:")/i', '/<img(.*?)src="[^'.self::$left_delimiter.'](.*?)[^'.self::$right_delimiter.']"/', '/<img(.*?)src=(?:\@)([^"]+?)(?:\@)/i' );
-				$sub = array( '<img$1src=@$2://$3@', '<img$1src=@$2@', '<img$1src="' . $GLOBALS['env']['imagesPath'] . '$2"', '<img$1src="$2"' );
+				$sub = array( '<img$1src=@$2://$3@', '<img$1src=@$2@', '<img$1src="' . $GLOBALS['env']['imagesPath'].DIRECTORY_SEPARATOR . '$2"', '<img$1src="$2"' );
 			}
 
 			if( in_array( "script", self::$path_replace_list ) ){
 				$exp = array_merge( $exp , array( '/<script(.*?)src=(?:")(http|https)\:\/\/([^"]+?)(?:")/i', '/<script(.*?)src=(?:")([^"]+?)#(?:")/i', '/<script(.*?)src="(.*?)"/', '/<script(.*?)src=(?:\@)([^"]+?)(?:\@)/i' ) );
-				$sub = array_merge( $sub , array( '<script$1src=@$2://$3@', '<script$1src=@$2@', '<script$1src="' . $GLOBALS['env']['javascriptsPath'] . '$2"', '<script$1src="$2"' ) );
+				$sub = array_merge( $sub , array( '<script$1src=@$2://$3@', '<script$1src=@$2@', '<script$1src="' . $GLOBALS['env']['javascriptsPath'].DIRECTORY_SEPARATOR . '$2"', '<script$1src="$2"' ) );
 			}
 
 			if( in_array( "link", self::$path_replace_list ) ){
 				$exp = array_merge( $exp , array( '/<link(.*?)href=(?:")(http|https)\:\/\/([^"]+?)(?:")/i', '/<link(.*?)href=(?:")([^"]+?)#(?:")/i', '/<link(.*?)href="(.*?)"/', '/<link(.*?)href=(?:\@)([^"]+?)(?:\@)/i' ) );
-				$sub = array_merge( $sub , array( '<link$1href=@$2://$3@', '<link$1href=@$2@' , '<link$1href="' . $GLOBALS['env']['stylesheetsPath'] . '$2"', '<link$1href="$2"' ) );
+				$sub = array_merge( $sub , array( '<link$1href=@$2://$3@', '<link$1href=@$2@' , '<link$1href="' . $GLOBALS['env']['stylesheetsPath'].DIRECTORY_SEPARATOR . '$2"', '<link$1href="$2"' ) );
 			}
 
 			if( in_array( "a", self::$path_replace_list ) ){
@@ -686,7 +686,7 @@ class RainTPL{
 
 			if( in_array( "input", self::$path_replace_list ) ){
 				$exp = array_merge( $exp , array( '/<input(.*?)src=(?:")(http|https)\:\/\/([^"]+?)(?:")/i', '/<input(.*?)src=(?:")([^"]+?)#(?:")/i', '/<input(.*?)src="(.*?)"/', '/<input(.*?)src=(?:\@)([^"]+?)(?:\@)/i' ) );
-				$sub = array_merge( $sub , array( '<input$1src=@$2://$3@', '<input$1src=@$2@', '<input$1src="' . $GLOBALS['env']['imagesPath']. '$2"', '<input$1src="$2"' ) );
+				$sub = array_merge( $sub , array( '<input$1src=@$2://$3@', '<input$1src=@$2@', '<input$1src="' . $GLOBALS['env']['imagesPath'].DIRECTORY_SEPARATOR. '$2"', '<input$1src="$2"' ) );
 			}
 			return preg_replace( $exp, $sub, $html );
 

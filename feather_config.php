@@ -21,13 +21,13 @@ define('MODELS_PATH',APP_PATH.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'mod
    assets path
    @warning when template compiling feather will replace all relative paths of assets
  */;
-define('ASSETS_PATH','assets'.DIRECTORY_SEPARATOR);
+define('ASSETS_PATH','assets');
 //javascripts path;
-define('JAVASCRIPTS_PATH',ASSETS_PATH.'javascripts'.DIRECTORY_SEPARATOR);
+define('JAVASCRIPTS_PATH',ASSETS_PATH.DIRECTORY_SEPARATOR.'javascripts');
 //images path;
-define('IMAGES_PATH',ASSETS_PATH.'images'.DIRECTORY_SEPARATOR);
+define('IMAGES_PATH',ASSETS_PATH.DIRECTORY_SEPARATOR.'images');
 //stylesheet path;
-define('STYLESEETS_PATH',ASSETS_PATH.'stylesheets'.DIRECTORY_SEPARATOR);
+define('STYLESEETS_PATH',ASSETS_PATH.DIRECTORY_SEPARATOR.'stylesheets');
 
 
 //app config path

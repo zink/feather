@@ -5,11 +5,21 @@ abstract class Base{
         //spl_autoload_register(__NAMESPACE__.'\Base::__load_plugins');
         $webUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'];
         if(REWRITE){
-            $GLOBALS['env']['baseURL'] = $this -> baseURL = str_replace('/index.php','',$webUrl);
+            $GLOBALS['env']['baseURL'] = str_replace('/index.php','',$webUrl);
         }else{
-            $GLOBALS['env']['baseURL'] = $this -> baseURL = $webUrl;
+            $GLOBALS['env']['baseURL'] = $webUrl;
         }
-        $GLOBALS['env']['appRoot'] = $this -> appRoot = str_replace('/index.php','',$webUrl);
+        $GLOBALS['env']['appRoot'] = str_replace('/index.php','',$webUrl);
+        if(CDN){
+            $assetsRoot = CDN.DIRECTORY_SEPARATOR;
+        }else{
+            $assetsRoot = $GLOBALS['env']['appRoot'].DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR;
+        }
+        $GLOBALS['env']['assetsPath'] = $assetsRoot.ASSETS_PATH;
+        $GLOBALS['env']['javascriptsPath'] = $assetsRoot.JAVASCRIPTS_PATH;
+        $GLOBALS['env']['imagesPath'] = $assetsRoot.IMAGES_PATH;
+        $GLOBALS['env']['stylesheetsPath'] = $assetsRoot.STYLESEETS_PATH;
+        $this -> env = $GLOBALS['env'];
         $_GET['param'] = $GLOBALS['param'];
     }
     /*
@@ -42,16 +52,16 @@ abstract class Base{
                 $actionView->draw($layoutFile);
             break;
             case 'js':
-                $viewFile = $GLOBALS['control'].DIRECTORY_SEPARATOR.$args[view].'.ajax';
+                $viewFile = $GLOBALS['control'].DIRECTORY_SEPARATOR.$args['view'].'.ajax';
                 $actionView = new \ActionView\Base();
                 $actionView->assign(get_object_vars($this));
-                $actionView->draw($viewFile,ture);
+                $actionView->draw($viewFile);
             break;
         }
     }
     public function redirect($path){
         $_SERVER['PATH_INFO'] = '/'.$path;
-        header('Location: '.$this -> baseURL.'/'.$path);
+        header('Location: '.$GLOBALS['env']['baseURL'].'/'.$path);
     }
     public function modifier_cut($string, $length = 80, $etc = '...', $break_words = false, $middle = false){
         if ($length == 0)
