@@ -1,6 +1,7 @@
 <?php
 include_once __DIR__.'/curl.php';
 include_once __DIR__.'/http.php';
+define('HTTP_TIME_OUT',30);
 class Httpclient{
 	function __construct(){
 		if(ECAE_MODE==true){

@@ -71,7 +71,7 @@ class Http{
         $data = null;
 
         $responseHeader = array();
-        if($this->proxyHost && $this->proxyPort){
+        if(isset($this->proxyHost) && $this->proxyPort){
             $request_server = $this->proxyHost;
             $request_port = $this->proxyPort;
             //kernel::log('Using proxy '.$request_server.':'.$request_port.'. ');
@@ -91,7 +91,7 @@ class Http{
                 $request_addr = "ssl://" . $request_addr;
             }
         }
-        if($this->hostport){
+        if(isset($this->hostport)){
             $request_port = $this->hostport;
         }
 
@@ -171,6 +171,8 @@ class Http{
 
     function process($fp){
         $chunkmode = (isset($this->responseHeader['transfer-encoding']) && $this->responseHeader['transfer-encoding']=='chunked');
+        $responseBody = '';
+        $readed = 0;
         if($chunkmode){
             if(HTTP_TIME_OUT === $this->readsocket($fp,512,$chunklen,'fgets')){
                 return HTTP_TIME_OUT;
