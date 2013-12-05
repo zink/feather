@@ -31,31 +31,41 @@ abstract class Base{
               )
      */
      function render($args=array()){
-        if(file_exists(LAYOUTS_PATH.$GLOBALS['control'].'.html')){
-            $layout = $GLOBALS['control'];
+        $controller_view_path = str_replace('controller','',strtolower(get_class($this)));
+        if(file_exists(LAYOUTS_PATH.$controller_view_path.'.html')){
+            $layout = $controller_view_path;
         }else{
             $layout = 'application';
         }
         $default = array(
                 'format'=>'html',
                 'layout'=>$layout,
-                'view'=>$GLOBALS['action']
+                'view'=>$GLOBALS['action'],
+                'return_string' =>false 
                 );
         $args = array_merge($default,$args);
         switch($args['format']){
             case 'html':
-                $viewFile = $GLOBALS['control'].DIRECTORY_SEPARATOR.$args['view'];
+                $viewFile = $controller_view_path.DIRECTORY_SEPARATOR.$args['view'];
                 $actionView = new \ActionView\Base();
                 $layoutFile = 'layouts/'.$args['layout'];
                 $actionView -> assign('yield',$viewFile);
                 $actionView->assign(get_object_vars($this));
-                $actionView->draw($layoutFile);
+                if($args['return_string']){
+                    return $actionView->draw($layoutFile,$args['return_string']);
+                }else{
+                    $actionView->draw($layoutFile,$args['return_string']);
+                }
             break;
             case 'js':
-                $viewFile = $GLOBALS['control'].DIRECTORY_SEPARATOR.$args['view'].'.ajax';
+                $viewFile = $controller_view_path.DIRECTORY_SEPARATOR.$args['view'].'.ajax';
                 $actionView = new \ActionView\Base();
                 $actionView->assign(get_object_vars($this));
-                $actionView->draw($viewFile);
+                if($args['return_string']){
+                    return $actionView->draw($viewFile,$args['return_string']);
+                }else{
+                    $actionView->draw($viewFile,$args['return_string']);
+                }
             break;
         }
     }
